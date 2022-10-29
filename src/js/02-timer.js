@@ -25,9 +25,13 @@ const options = {
     }
     document.getElementById('start').disabled = false;
     console.log(selectedDates[0]);
-    console.log(new Date());
-    ref.days.textContent = selectedDates[0] - new Date();
   },
 };
 
 const calendar = flatpickr('#datetime-picker', options);
+
+ref.button.addEventListener('click', onStart);
+
+function onStart(evt) {
+  console.log(evt);
+}
