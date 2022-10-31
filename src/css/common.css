@@ -16,3 +16,34 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.timer {
+  display: flex;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  border-radius: 50% 20% / 10% 40%;
+  border: 2px solid turquoise;
+  width: 100px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.value {
+  margin-right: 10px;
+}
+
+.flatpickr-input {
+  border: 2px solid yellowgreen;
+  border-radius: 10% / 50%;
+  margin-right: 30px;
+}
+
+button {
+  border: 2px solid yellowgreen;
+  border-radius: 25% 10%;
+  width: 120px;
+  color: black;
+}
