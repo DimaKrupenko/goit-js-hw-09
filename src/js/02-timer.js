@@ -2,7 +2,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 import flatpickr from 'flatpickr';
 import Notiflix from 'notiflix';
 
-const ref = {
+const refs = {
   input: document.querySelector('#datetime-picker'),
   button: document.querySelector('[data-start]'),
   days: document.querySelector('[data-days]'),
@@ -15,8 +15,10 @@ const ref = {
 //   options.onClose();
 // });
 
-document.getElementById('start').disabled = true;
+refs.button.disabled = true;
+
 let dataValue = 0;
+
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -24,10 +26,10 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0] < new Date()) {
-      document.getElementById('start').disabled = true;
+      refs.button.disabled = true;
       return Notiflix.Notify.warning('Please choose a date in the future');
     }
-    document.getElementById('start').disabled = false;
+    refs.button.disabled = false;
     dataValue = selectedDates[0] - new Date();
     console.log(selectedDates[0]);
   },
@@ -35,17 +37,17 @@ const options = {
 
 const calendar = flatpickr('#datetime-picker', options);
 
-ref.button.addEventListener('click', onStartId);
+refs.button.addEventListener('click', onStartId);
 
 function onStartId() {
   const conversion = convertMs(dataValue);
 
-  ref.days.textContent = conversion.days;
-  ref.hours.textContent = conversion.hours;
-  ref.minutes.textContent = conversion.minutes;
-  ref.seconds.textContent = conversion.seconds;
+  refs.days.textContent = conversion.days;
+  refs.hours.textContent = conversion.hours;
+  refs.minutes.textContent = conversion.minutes;
+  refs.seconds.textContent = conversion.seconds;
 
-  document.getElementById('start').disabled = true;
+  refs.button.disabled = true;
 
   const startTime = Date.now();
 
@@ -57,10 +59,10 @@ function onStartId() {
     const deltaTime = currentTime - startTime;
     const timeComponents = convertMs(deltaTime);
 
-    ref.days.textContent = pad(conversion.days - timeComponents.days);
-    ref.hours.textContent = pad(conversion.hours - timeComponents.hours);
-    ref.minutes.textContent = pad(conversion.minutes - timeComponents.minutes);
-    ref.seconds.textContent = pad(conversion.seconds - timeComponents.seconds);
+    refs.days.textContent = pad(conversion.days - timeComponents.days);
+    refs.hours.textContent = pad(conversion.hours - timeComponents.hours);
+    refs.minutes.textContent = pad(conversion.minutes - timeComponents.minutes);
+    refs.seconds.textContent = pad(conversion.seconds - timeComponents.seconds);
     // console.log(timeComponents);
   }, 1000);
 }
