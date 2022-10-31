@@ -39,6 +39,8 @@ img {
   border: 2px solid yellowgreen;
   border-radius: 10% / 50%;
   margin-right: 30px;
+
+  padding-left: 30px;
 }
 
 button {
