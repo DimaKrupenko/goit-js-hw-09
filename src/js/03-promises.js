@@ -22,30 +22,28 @@ function createPromise(position, delay) {
   });
 }
 
-form.addEventListener('input', evt => {
+btnPromise.addEventListener('click', evt => {
+  evt.preventDefault();
+
   let delayFirst = parseInt(delay.value);
   let stepDelay = parseInt(step.value);
   const amountValue = parseInt(amount.value);
 
-  btnPromise.addEventListener('click', evt => {
-    evt.preventDefault();
-
-    for (let i = 1; i <= amountValue; i += 1) {
-      createPromise(i, delayFirst)
-        .then(({ position, delay }) => {
-          Notiflix.Notify.success(
-            `✅ Fulfilled promise ${position} in ${delay}ms`
-          );
-        })
-        .catch(({ position, delay }) => {
-          Notiflix.Notify.failure(
-            `❌ Rejected promise ${position} in ${delay}ms`
-          );
-        })
-        .finally(() => console.log('Promise settled')),
-        (delayFirst += stepDelay);
-    }
-  });
+  for (let i = 1; i <= amountValue; i += 1) {
+    createPromise(i, delayFirst)
+      .then(({ position, delay }) => {
+        Notiflix.Notify.success(
+          `✅ Fulfilled promise ${position} in ${delay}ms`
+        );
+      })
+      .catch(({ position, delay }) => {
+        Notiflix.Notify.failure(
+          `❌ Rejected promise ${position} in ${delay}ms`
+        );
+      })
+      .finally(() => console.log('Promise settled')),
+      (delayFirst += stepDelay);
+  }
 });
 
 btnPromise.addEventListener('click', onStop);
