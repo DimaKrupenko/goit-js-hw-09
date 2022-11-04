@@ -6,13 +6,11 @@ const step = document.querySelector('input[name = "step"]');
 const amount = document.querySelector('input[name = "amount"]');
 const btnPromise = document.querySelector('button[type = "submit"]');
 
-let startId;
-
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     const shouldResolve = Math.random() > 0.3;
 
-    startId = setTimeout(() => {
+    setTimeout(() => {
       if (shouldResolve) {
         resolve({ position, delay });
       } else {
@@ -45,9 +43,3 @@ btnPromise.addEventListener('click', evt => {
       (delayFirst += stepDelay);
   }
 });
-
-btnPromise.addEventListener('click', onStop);
-
-function onStop() {
-  clearInterval(startId);
-}
